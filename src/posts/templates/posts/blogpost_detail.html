@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<title> {{ post.title }} </title>
+
+{%  endblock %}
+
+{% block content %}
+
+<div class="container">
+<h6 class="post-cat"> {{ post.category }}</h6>
+<article class="post-detail">
+    
+    <h1> {{ post.title }} </h1>
+    <div class="card">
+    {% if post.thumbnail %}
+    <img src="{{ post.thumbnail.url }}" alt="l'image de l'article">
+    {% endif %}
+    </div>
+    
+  
+    <div>  {{ post.content | linebreaks | safe }} </div>
+      
+
+</article>
+<div id="tags-container">
+    {% for tag in post.tags.all %}
+      <span class="badge text-bg-secondary">{{ tag.name }}</span>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}
+

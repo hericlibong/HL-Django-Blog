@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title> blog </title>
+{% endblock title %}
+
+
+
+{% block content %}
+<h1 class="main-title"> HL-STORIES </h1>
+
+{% for post in posts %}
+
+
+<div class="container">
+    <article>
+        <div class="post-content">
+            <h2 class="list-title"><a href="{% url 'post' post.slug %}">{{ post.title  }}</a></h2>
+            <div class="card">
+                {% if post.thumbnail %}
+                <img src="{{ post.thumbnail.url }}" alt="image article">
+                {% endif %}
+            </div>
+
+            <div class="post-title">
+
+                {% if user.is_authenticated %}
+                <div>
+                    <a href="{% url 'edit'  post.slug  %}" style="color:steelblue"> Editer</a>
+                    <a href="{% url 'delete' post.slug  %}" style="color:indianred"> supprimer</a>
+                </div>
+
+                {% endif %}
+            </div>
+
+            <h6 class="post-author"> publié par <i>{{ post.author  }}</i> le {{ post.created_on }} | {{ post.category }}
+            </h6>
+            <p class="post-excerpt"> {{ post.content| safe | truncatewords:50 }} </p>
+
+            <form action="{% url 'post' post.slug %}">
+                <button class="btn btn-primary btn-sm">Lire l'article </button>
+
+            </form>
+        </div>
+
+    </article>
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+
+{% endblock content %}

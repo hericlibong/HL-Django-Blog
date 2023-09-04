@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+
+{%  block title %}
+<title> Inscription </title>
+{%  endblock title %}
+
+
+{%  block content %}
+<h1> Inscription </h1>
+{% if form.errors %}
+{{ form.errors }}
+{% endif %}
+
+<form method ="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    
+<button type = "submit"> S'inscrire</button>
+</form>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'login' %}"> Se connecter </a>
+
+{% endif %}
+
+
+{%  endblock content %}

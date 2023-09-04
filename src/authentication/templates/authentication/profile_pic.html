@@ -1,0 +1,14 @@
+
+
+
+{% block content %}
+    <p>Télécharger une photo</p>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        
+        <img src="{{ object.profile_photo.url }}" alt="{{ object.username }}" width="100">
+        
+        <button type="submit" >telecharger</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Se connecter </title>
+{% endblock title %}
+
+{% block content %}
+
+<h1> Connexion </h1>
+
+<form method="POST">
+    {{  form.as_p }}
+    {% csrf_token %}
+<button type = "submit"> Se connecter</button>
+</form>
+<p> si vous n'êtes pas encore enregistré</p>
+
+
+<button><a href="{% url 'signup' %}" style="text-decoration:none;"> S'enregistrer ici</a></button>
+
+
+
+{% endblock content %}
