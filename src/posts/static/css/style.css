@@ -40,9 +40,13 @@ nav {
     line-height: 20px; /* Ajustez la ligne de hauteur pour aligner l'avatar avec les autres éléments */
     padding-top: 5px;
     padding-bottom: 5px;
+    
 }
 
+.comment-avatar {
+    width: 10%;
 
+}
 
 
 #blog {

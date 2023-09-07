@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'authentication',
+    'ckeditor',
+    'froala_editor',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,12 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.BlogUser'
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'full',
+#         #'height': 300,
+#         #'width': 300,
+#     },
+# }

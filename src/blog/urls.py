@@ -1,10 +1,11 @@
 
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from authentication.views import LoginPageView, logout_user, signup_page, sucess_connexion, upload_profile_photo
-from posts.views import BlogHome, BlogPostCreate, BlogPostUpdate, BlogPostDetail, BlogPostDelete, photo_upload
+from posts.views import BlogHome, BlogPostCreate, BlogPostUpdate, BlogPostDetail, BlogPostDelete, photo_upload,  AdCommentPostView
 from blog import settings
+#from froala_editor import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('create/', BlogPostCreate.as_view(), name = 'create'),
     path('edit/<str:slug>/', BlogPostUpdate.as_view(), name = 'edit'),
     path('blog/<str:slug>/', BlogPostDetail.as_view(), name = 'post'),
+    path('comment/<str:slug>/', AdCommentPostView.as_view(), name = 'post_comment'),
     path('delete/<str:slug>/', BlogPostDelete.as_view(), name = 'delete'),
     path('photo/upload/', photo_upload, name='photo_upload'),
     
@@ -21,5 +23,7 @@ urlpatterns = [
     path('success/', sucess_connexion, name ='success'),
     path('profile/photo/', upload_profile_photo, name = 'profile-photo'),
     
-    path('logout/', logout_user, name = 'logout')
+    path('logout/', logout_user, name = 'logout'),
+    #path('froala_editor/',include('froala_editor.urls')),
+    
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

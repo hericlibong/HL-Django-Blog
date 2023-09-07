@@ -17,6 +17,38 @@ nav {
     justify-content:space-between;
 }
 
+
+.navbar {
+    height: 150px;
+}
+
+.container-fluid {
+    margin-top: 0%;
+}
+
+.navbar-nav ml-auto{
+    margin-right: 10rem;
+}
+
+
+.avatar {
+    width: 20%;
+    border-radius: 10%;
+    display: inline-block; /* Utilisez display: inline-block au lieu de display: block */
+    vertical-align: middle; /* Alignez l'avatar verticalement au milieu */
+    margin: 0 10px; /* Ajoutez une marge à gauche et à droite pour l'espace */
+    line-height: 20px; /* Ajustez la ligne de hauteur pour aligner l'avatar avec les autres éléments */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.comment-avatar {
+    width: 10%;
+
+}
+
+
 #blog {
     display:flex;
     flex-direction: column;
@@ -37,6 +69,12 @@ nav {
 
 }
 
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
 .main-title {
     margin-bottom: 2rem;
     font-weight:bolder;
@@ -52,13 +90,18 @@ nav {
     color:steelblue;
     text-decoration: none;
     margin-left: .5em;
-}
-.post-title a:last-child {
-color:black;
+
 }
 
+
 .post-title > div {
-    margin-left: auto;
+    margin-left: 0;
+}
+
+.list-title a{
+    text-decoration: none;
+    color:black;
+    margin-bottom: 1rem;
 }
 
 .post-author {
@@ -80,6 +123,9 @@ color:black;
     text-transform: uppercase;
     margin-bottom: 1rem;
 
+}
+.post-cat{
+    margin-left: 0;
 }
 
 input, textarea {
@@ -105,7 +151,7 @@ label {
     font: size 1.25em;
     border-radius: .3rem;
     color : white;
-    width: 100%;
+    width: 40%;
     cursor: pointer;
 }
 
@@ -116,3 +162,27 @@ background-color: steelblue;
 .btn-delete {
     background-color:indianred;
 }
+
+
+
+.badge {
+    margin-right: 1rem;
+
+}
+
+
+
+#tags-container {
+    margin-right: 10rem;
+    float: left;
+     
+  }
+.card {
+    margin-bottom: 1.5rem;
+ }
+ 
+.post-content{
+    margin-bottom: 4rem;
+}
+
+

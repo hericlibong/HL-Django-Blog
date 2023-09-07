@@ -10,9 +10,6 @@ from authentication import forms
 
 
 
-
-
-
 class LoginPageView(View):
     template_name = 'authentication/login.html'
     form_class = forms.LoginForm

@@ -26,8 +26,12 @@
 
                 {% if user.is_authenticated %}
                 <div>
+                    {% if perms.posts.change_blogposts %}
                     <a href="{% url 'edit'  post.slug  %}" style="color:steelblue"> Editer</a>
+                    {% endif %}
+                    {% if perms.posts.delete_blogposts %}
                     <a href="{% url 'delete' post.slug  %}" style="color:indianred"> supprimer</a>
+                    {% endif %}
                 </div>
 
                 {% endif %}

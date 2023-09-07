@@ -3,6 +3,9 @@ from django.utils.text import slugify
 from django.db import models
 from authentication.models import BlogUser
 from django.conf import settings
+from ckeditor.fields import RichTextField
+#from froala_editor.fields import FroalaField
+from PIL import Image
 
 
 
@@ -41,18 +44,33 @@ class BlogPosts(models.Model):
     last_updated = models.DateTimeField(auto_now_add=True)
     created_on = models.DateField(blank=True, null=True)
     published =models.BooleanField(default=False, verbose_name='Publié')
-    content = models.TextField(blank=True, verbose_name='Contenu')
+    
+    #### Choose an Editor ####
+    
+    #content = FroalaField()
+    content = RichTextField(blank=True, null=True, verbose_name= 'Contenu')
+    #content = models.TextField(blank=True, verbose_name='Contenu')
+    
+    
     category = models.CharField(max_length=50, choices= CATEGORIES_CHOICES)
     tags = models.ManyToManyField(Tags, related_name='tags')
     thumbnail = models.ImageField(blank=True, upload_to='blog')
     photo = models.ForeignKey(Photo, on_delete=models.SET_NULL, null=True, related_name='photos_for_blog_posts')
     
+    IMAGE_MAX_SIZE = (646, 347.85)
     
+    def resize_thumb(self):
+        if self.thumbnail:
+            image = Image.open(self.thumbnail)
+            image.thumbnail(self.IMAGE_MAX_SIZE)
+            image.save(self.thumbnail.path)
     
-    
-    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.resize_thumb()
+        
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['-last_updated']
         verbose_name = "Article"
         
     def __str__(self):
@@ -70,5 +88,24 @@ class BlogPosts(models.Model):
         
     def get_absolute_url(self):
         return reverse('home') 
-        
+    
+class Comment(models.Model):
+    post = models.ForeignKey(BlogPosts, on_delete=models.CASCADE, related_name = 'comments')
+    title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Titre de l'article")
+    author = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True) 
+    picture = models.ForeignKey(BlogUser, on_delete=models.CASCADE, related_name='picture_comment', blank=True, null=True)
+    
+    def get_author_profile_photo(self):
+        return self.author.profile_photo
+    
+    
+    def __str__(self):
+        return f'{self.author.username} - {self.title} - {self.created_at}'  
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+       
             
