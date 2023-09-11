@@ -9,12 +9,21 @@
 {% block content %}
 <h1 class="main-title"> HL-STORIES </h1>
 
+
+
+
+
+
+
+
 {% for post in posts %}
 
 
 <div class="container">
+    
     <article>
         <div class="post-content">
+            <span> {{ post.category }} </span>
             <h2 class="list-title"><a href="{% url 'post' post.slug %}">{{ post.title  }}</a></h2>
             <div class="card">
                 {% if post.thumbnail %}

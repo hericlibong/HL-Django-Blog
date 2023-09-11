@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-@import "reset.css";
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+    @import "reset.css";
 
 
 
@@ -184,5 +184,9 @@ background-color: steelblue;
 .post-content{
     margin-bottom: 4rem;
 }
+
+
+
+
 
 

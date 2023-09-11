@@ -1,6 +1,6 @@
     
 from django.contrib import admin
-from .models import BlogPosts, Tags, Photo, Comment
+from .models import BlogPosts, Tags, Comment
 
    
 class CommentInlineAdmin(admin.TabularInline):
@@ -27,6 +27,5 @@ class BlogPostsAdmin(admin.ModelAdmin):
     
 admin.site.register(BlogPosts, BlogPostsAdmin)
 admin.site.register(Tags)
-admin.site.register(Photo)
 admin.site.register(Comment)
 

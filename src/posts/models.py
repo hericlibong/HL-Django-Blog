@@ -3,8 +3,10 @@ from django.utils.text import slugify
 from django.db import models
 from authentication.models import BlogUser
 from django.conf import settings
-from ckeditor.fields import RichTextField
+#from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 #from froala_editor.fields import FroalaField
+
 from PIL import Image
 
 
@@ -18,12 +20,7 @@ class Tags(models.Model):
     def __str__(self):
         return self.name
      
-class Photo(models.Model):
-    photo = models.ImageField(upload_to="blog")
-    caption = models.CharField(max_length=128, blank=True)
-    uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date_created = models.DateTimeField(auto_now_add=True)
-    blogposts = models.ForeignKey('BlogPosts', related_name= 'blog_posts', on_delete=models.CASCADE)
+
     
 
 
@@ -48,14 +45,16 @@ class BlogPosts(models.Model):
     #### Choose an Editor ####
     
     #content = FroalaField()
-    content = RichTextField(blank=True, null=True, verbose_name= 'Contenu')
+    #content = RichTextField(blank=True, null=True, verbose_name= 'Contenu')
+    content = RichTextUploadingField(blank=True, null=True)
     #content = models.TextField(blank=True, verbose_name='Contenu')
+    
     
     
     category = models.CharField(max_length=50, choices= CATEGORIES_CHOICES)
     tags = models.ManyToManyField(Tags, related_name='tags')
     thumbnail = models.ImageField(blank=True, upload_to='blog')
-    photo = models.ForeignKey(Photo, on_delete=models.SET_NULL, null=True, related_name='photos_for_blog_posts')
+  
     
     IMAGE_MAX_SIZE = (646, 347.85)
     
@@ -89,6 +88,21 @@ class BlogPosts(models.Model):
     def get_absolute_url(self):
         return reverse('home') 
     
+    def get_category_url(self):
+        return reverse('category_view', args=[self.category])
+    
+    #### affichage par catégories #####
+    
+    # méthode qui renvoie une liste des catégories uniques disponibles
+    @classmethod
+    def get_available_categories(cls):
+        return cls.objects.order_by('category').values_list('category', flat=True).distinct()
+    
+    # ajoutez une méthode pour obtenir l'URL de filtre pour chaque catégorie.
+    @staticmethod
+    def get_category_filter_url(category):
+        return reverse('home') + f'?category={category}'
+    
 class Comment(models.Model):
     post = models.ForeignKey(BlogPosts, on_delete=models.CASCADE, related_name = 'comments')
     title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Titre de l'article")
@@ -106,6 +120,8 @@ class Comment(models.Model):
     
     class Meta:
         ordering = ['-created_at']
+        
+    
     
        
             

@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'posts',
     'authentication',
     'ckeditor',
+    'ckeditor_uploader',
     'froala_editor',
+    
 ]
 
 MIDDLEWARE = [
@@ -115,7 +117,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
@@ -127,10 +129,41 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.BlogUser'
 
 
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'toolbar': 'full',
-#         #'height': 300,
-#         #'width': 300,
-#     },
-# }
+
+
+CKEDITOR_CONFIGS = {    
+    'default': {
+        'toolbar': 'full',
+        'height': 500,
+        'width': 800,
+        'extraPlugins': 'codesnippet',
+        'codeSnippet_theme': 'monokai_sublime',
+        'codeSnippet_languages': {
+            'python': 'Python',
+            'javascript': 'JavaScript',
+            'shell': 'Shell',
+            'java': 'Java',
+            'c': 'C',
+            'cpp': 'C++',
+            'php': 'PHP',
+            'html': 'HTML',
+            'css': 'CSS',
+            'ruby': 'Ruby',
+            'sql': 'SQL',
+            'swift': 'Swift',
+            'go': 'Go',
+            'rust': 'Rust',
+            'typescript': 'TypeScript',
+            'kotlin': 'Kotlin',
+            'dart': 'Dart',
+            'perl': 'Perl',
+            'scala': 'Scala',
+            'r': 'R',
+            'matlab': 'MATLAB',
+            # Ajoutez d'autres langues ici si nécessaire
+        },
+        'contentsCss': '{% static "css/ckeditor.css" %}',  # Assurez-vous d'utiliser des quotes doubles ici
+    },
+}
+
+

@@ -1,15 +1,10 @@
 from django import forms
-from froala_editor.widgets import FroalaEditor
+#from froala_editor.widgets import FroalaEditor
+from ckeditor.widgets import CKEditorWidget
 
 from . import models
 
-class PhotoForm(forms.ModelForm):
-    class Meta:
-        model = models.Photo
-        fields = ['photo', 'caption']
- 
-class PageForm(forms.ModelForm):
-      content = forms.CharField(widget=FroalaEditor) 
+
       
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -21,4 +16,9 @@ class CommentForm(forms.ModelForm):
             'body':forms.Textarea(attrs={'class':'form-control'})
         }
              
- 
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = models.BlogPosts
+        fields = ['content']
+
+    content = forms.CharField(widget=CKEditorWidget())  

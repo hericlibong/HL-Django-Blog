@@ -16,4 +16,5 @@ class UploadProfilePhotoForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ['profile_photo']
-        
+
+     
