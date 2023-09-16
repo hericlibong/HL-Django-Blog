@@ -124,9 +124,19 @@ nav {
     margin-bottom: 1rem;
 
 }
-.post-cat{
-    margin-left: 0;
-}
+.post-cat text-left {
+    text-align: left;
+} 
+.author-name {
+    text-align: left;
+} 
+
+/* CSS personnalisé */
+.card-body, align-left {
+    text-align: left; /* Aligne le texte à gauche */
+    padding-left: 0px; /* Ajoute un peu d'espace à gauche pour combler l'espace entre l'image et le texte */
+  }
+  
 
 input, textarea {
     display: block;
@@ -184,6 +194,8 @@ background-color: steelblue;
 .post-content{
     margin-bottom: 4rem;
 }
+
+
 
 
 

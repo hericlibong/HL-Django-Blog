@@ -18,7 +18,7 @@
    
 
     <form method="GET" class="mb-3">
-     <label for="categorie" class="form-label">Select Category:</label>
+     <label for="categorie" class="form-label"></label>
         <div class="btn-group" role="group" aria-label="Category Buttons">
             {% for categorie in available_categories %}
                 <a href="{% url 'order_category' %}?category={{ categorie }}" class="btn btn-primary">{{ categorie }}</a>
@@ -65,14 +65,15 @@
 
             </form>
         </div>
-
+       
     </article>
+    {% endfor %}
 </div>
 
 
 
 
-{% endfor %}
+
 
 
 {%  endblock content %}

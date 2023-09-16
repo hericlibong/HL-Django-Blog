@@ -15,6 +15,7 @@ class CommentForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class' : 'form-control'}),
             'body':forms.Textarea(attrs={'class':'form-control'})
         }
+    body = forms.CharField(widget = CKEditorWidget()) 
              
 class BlogPostForm(forms.ModelForm):
     class Meta:

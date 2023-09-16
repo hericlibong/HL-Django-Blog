@@ -309,9 +309,12 @@ a > img {
     margin-bottom: 1rem;
 
 }
-.post-cat{
-    margin-left: 0;
+.text-left {
+    text-align: left;
 }
+.author-name {
+    text-align: left;
+} 
 
 input, textarea {
     display: block;
