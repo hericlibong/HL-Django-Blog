@@ -56,7 +56,7 @@ class BlogPostCreate(CreateView):
 class BlogPostUpdate(UpdateView):
     model = BlogPosts
     template_name = 'posts/blogpost_edit.html'
-    fields = ['title', 'content', 'category', 'published', ]
+    fields = ['title', 'description', 'content', 'category', 'published', ]
     
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
