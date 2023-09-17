@@ -42,7 +42,7 @@ class BlogHome(ListView):
 class BlogPostCreate(CreateView):
     model = BlogPosts
     template_name = 'posts/blogpost_create.html'
-    fields = ['title',' description', 'category', 'thumbnail', 'content', 'published']
+    fields = ['title', 'description', 'category', 'thumbnail', 'content', 'published']
     
     def form_valid(self, form):
         # Associez le modèle BlogPosts avec le fichier téléchargé
