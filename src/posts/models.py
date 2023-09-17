@@ -36,6 +36,7 @@ class BlogPosts(models.Model):
     ]
     
     title = models.CharField(max_length=255, unique = True, verbose_name= 'Titre')
+    description = models.TextField(blank=True,null=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     author = models.ForeignKey(BlogUser, on_delete=models.SET_NULL, null=True, blank=True)
     last_updated = models.DateTimeField(auto_now_add=True)

@@ -8,7 +8,7 @@ class CommentInlineAdmin(admin.TabularInline):
 
 class BlogPostsAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'slug', 'author', 'last_updated', 'created_on',
+        'title', 'slug', 'description', 'author', 'last_updated', 'created_on',
         'published', 'category', 'tags_list'
     ]
     list_filter = ['category']

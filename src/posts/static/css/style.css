@@ -129,6 +129,9 @@ nav {
 } 
 .author-name {
     text-align: left;
+}
+.post-description {
+    margin-bottom: 4rem;
 } 
 
 /* CSS personnalisé */

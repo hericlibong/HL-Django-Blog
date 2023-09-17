@@ -315,6 +315,9 @@ a > img {
 .author-name {
     text-align: left;
 } 
+.post-description {
+    margin-bottom: 4rem;
+} 
 
 input, textarea {
     display: block;
