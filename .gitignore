@@ -1,4 +1,5 @@
 .env/
 __pycache__/
 db.sqlite3
-.env
+src/blog/.env
+venv/
